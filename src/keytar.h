@@ -17,6 +17,12 @@ bool DeletePassword(const std::string& service, const std::string& account);
 
 bool FindPassword(const std::string& service, std::string* password);
 
+bool AddKeypair(const std::string& label,
+				const std::string& certificate,
+				const std::string& privateKey);
+
+bool DeleteKeypair(const std::string& publicKeySha1);
+
 }  // namespace keytar
 
 #endif  // SRC_KEYTAR_H_

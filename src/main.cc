@@ -42,11 +42,39 @@ NAN_METHOD(FindPassword) {
     NanReturnNull();
 }
 
+NAN_METHOD(AddKeypair) {
+  NanScope();
+
+  bool success = keytar::AddKeypair(
+    *String::Utf8Value(args[0]),
+    *String::Utf8Value(args[1]),
+    *String::Utf8Value(args[2]));
+  if (success) {
+    NanReturnValue(NanTrue());
+  } else {
+    NanReturnValue(NanFalse());
+  }
+}
+
+NAN_METHOD(DeleteKeypair) {
+  NanScope();
+
+  bool success = keytar::DeleteKeypair(
+    *String::Utf8Value(args[0]));
+  if (success) {
+    NanReturnValue(NanTrue());
+  } else {
+    NanReturnValue(NanFalse());
+  }
+}
+
 void Init(Handle<Object> exports) {
   NODE_SET_METHOD(exports, "getPassword", GetPassword);
   NODE_SET_METHOD(exports, "addPassword", AddPassword);
   NODE_SET_METHOD(exports, "deletePassword", DeletePassword);
   NODE_SET_METHOD(exports, "findPassword", FindPassword);
+  NODE_SET_METHOD(exports, "addKeypair", AddKeypair);
+  NODE_SET_METHOD(exports, "deleteKeypair", DeleteKeypair);
 }
 
 }  // namespace
