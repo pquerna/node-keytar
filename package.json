@@ -27,7 +27,7 @@
     "credential vault"
   ],
   "scripts": {
-    "prepublish": "grunt clean coffee lint",
+    "prepublish": "grunt coffee lint",
     "test": "grunt test"
   },
   "devDependencies": {
